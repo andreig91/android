@@ -2,6 +2,7 @@ package net.cyclestreets;
 
 import net.cyclestreets.fragments.R;
 import net.cyclestreets.util.GPS;
+import net.cyclestreets.util.GPSFileDownloader;
 import net.cyclestreets.util.MessageBox;
 import net.cyclestreets.views.overlay.POIOverlay;
 import net.cyclestreets.views.overlay.RouteOverlay;
@@ -88,6 +89,7 @@ public class RouteMapFragment extends CycleMapFragment
 		enableMenuItem(menu, R.id.ic_menu_directions, true);
 		showMenuItem(menu, R.id.ic_menu_saved_routes, Route.storedCount() != 0);
 		enableMenuItem(menu, R.id.ic_menu_route_number, true);
+		showMenuItem(menu, R.id.ic_menu_gps_file_download, Route.available());
 		super.onPrepareOptionsMenu(menu);
 	} // onPrepareOptionsMenu
 
@@ -114,6 +116,10 @@ public class RouteMapFragment extends CycleMapFragment
       launchFetchRouteDialog();
       return true;
 		}
+	if(R.id.ic_menu_gps_file_download == menuId) {
+		launchGpsFileDownloadDialog();
+		return true;
+	}
 
 		return false;
 	} // onMenuItemSelected
@@ -180,4 +186,19 @@ public class RouteMapFragment extends CycleMapFragment
 	{
     mapView().invalidate();
 	} // onReset
+
+	private void launchGpsFileDownloadDialog()
+	{
+	  MessageBox.YesNo(mapView(),
+		  R.string.confirm_gps_file_download,
+		  new DialogInterface.OnClickListener() {
+			  public void onClick(DialogInterface arg0, int arg1) {
+			  	doLaunchGpsFileDownload();
+			  }
+		  });
+	} // launchGpsFileDownloadDialog
+
+	private void doLaunchGpsFileDownload() {
+		new GPSFileDownloader().downloadGPSFile(getActivity());
+	} // doLaunchGpsFileDownload
 } // class MapActivity

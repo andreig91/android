@@ -17,4 +17,8 @@
         android:icon="@drawable/ic_menu_route_number"
         android:title="@string/ic_menu_route_number"
         action:showAsAction="never"/>
+  <item android:id="@+id/ic_menu_gps_file_download"
+        android:icon="@drawable/ic_menu_gps_file_download"
+        android:title="@string/ic_menu_gps_file_download"
+        action:showAsAction="never"/>
 </menu>
