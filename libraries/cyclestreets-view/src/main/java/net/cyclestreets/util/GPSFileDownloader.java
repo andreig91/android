@@ -3,16 +3,8 @@ package net.cyclestreets.util;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
 import net.cyclestreets.routing.Route;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class GPSFileDownloader {
 
